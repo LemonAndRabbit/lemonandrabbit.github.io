@@ -185,7 +185,7 @@
         <ul style="text-align: left; display: inline-block; margin-top: 10px;">
           <li><span class="green-check">✔</span><strong>Effectiveness:</strong> Up to 24.58% average accuracy improvement on RULER;</li>
           <li><span class="green-check">✔</span><strong>Compatibility:</strong> Compatible with SSMs and hybrid Transformer-SSM models;</li>
-          <li><span class="green-check">✔</span><strong>Minimal overhead:</strong> Less than 4% average latency overhead measured on A100.</li>
+          <li><span class="green-check">✔</span><strong>Minimal overhead:</strong> Less than 4% average latency overhead on A100.</li>
         </ul>
       </h2>
     </div>
@@ -251,10 +251,10 @@
             Figure 2: (a) Challenge of directly applying SSM to a sequence (length denoted as <span class="math">\(S\)</span>) longer than the training sequence length (denoted as <span class="math">\(L\)</span>); (b) the proposed LongMamba framework, where we enlarge the receptive fields of the global channels using the two-step pipeline detailed below.
           </p>
             <br>
-            In light of the above findings, where we identify that the limited receptive field of the global channels is the main bottleneck for long-context understanding (as shown in Fig. 2(a)), the key idea of LongMamba is to mitigate memory decay in the aforementioned global channels by preventing the accumulation of unimportant tokens in their memory. As illustrated in Fig. 2(b), this is achieved through the following two-step pipeline: 
+            In light of the above findings, where we identify that the limited receptive field of the global channels poses a major bottleneck for long-context understanding (as shown in Fig. 2(a)), the key idea of LongMamba is to mitigate memory decay in the aforementioned global channels by preventing the accumulation of unimportant tokens in their memory. As illustrated in Fig. 2(b), this is achieved through the following two-step pipeline: 
             <ul>
-              <li><strong>Step 1: Identifying global channels within a target SSM</strong>. LongMamba first identifies global channels, which enter the following step, while keeping local channels untouched.</li>
-              <li><strong>Step 2: Enlarging the receptive fields of the global channels</strong>. LongMamba selects critical tokens along the sequence and applies token filtering to remove unimportant tokens from the global channels' memory.</li>
+              <li><strong>Step 1: Identifying global channels within a target SSM</strong>. LongMamba first identifies global channels, which enter the following step, while keeping the other channels (i.e., local channels) untouched.</li>
+              <li><strong>Step 2: Enlarging the receptive fields of the global channels</strong>. LongMamba selects critical tokens along the sequence and applies token filtering to remove less important tokens from the global channels' memory. As a result, the global channels' receptive fields are enlarged, allowing them to capture global information from the entire sequence.</li>
             </ul>
           </p>
         </div>
@@ -439,7 +439,7 @@
           </p>
 
           <p>
-            For more benchmarking results (such as on LongBench-E), please refer to <a href="https://arxiv.org/abs/2504.16053" target="_blank">our paper</a> for details.
+            For more comprehensive benchmarking results, including those on LongBench-E, we invite you to check out <a href="https://arxiv.org/abs/2504.16053" target="_blank">our paper</a> for details.
           </p>
         </div>
 
