@@ -25,7 +25,7 @@
 
 
   <title>LongMamba: Enhancing Mamba's Long Context Capabilities via Training-Free Receptive Field Enlargement</title>
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <!-- <link rel="icon" type="image/x-icon" href="static/images/favicon.ico"> -->
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
   rel="stylesheet">
 
@@ -42,6 +42,20 @@
       color: #3273dc; /* Bulma's primary blue color */
       font-weight: 600;
     }
+
+    .figure-caption {
+      font-style: italic;
+      text-align: center;
+      /* color: #666; */
+      margin-bottom: 1.5rem;
+      font-size: 0.95em;
+    }
+
+    .green-check {
+      color: #22c55e;
+      margin-right: 5px;
+      font-weight: bold;
+    }
   </style>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -50,6 +64,15 @@
   <script src="static/js/bulma-carousel.min.js"></script>
   <script src="static/js/bulma-slider.min.js"></script>
   <script src="static/js/index.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    };
+  </script>
 </head>
 <body>
 
@@ -111,14 +134,14 @@
                     </span>
 
                   <!-- Github link -->
-                  <span class="link-block">
+                  <!-- <span class="link-block">
                     <a href="https://github.com/GATECH-EIC/LongMamba" target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
                     </span>
                     <span>Code (to be released)</span>
-                  </a>
+                  </a> -->
                 </span>
 
                 <!-- ArXiv abstract Link -->
@@ -141,24 +164,33 @@
 
 
 <!-- Teaser figure-->
+<!-- <section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="static/images/fig1_overview.png" alt="Overview" class="overview-image">
+      <h2 class="subtitle has-text-centered">
+        <strong>(a) Key insight</strong>:  SSMs' hidden channels can be categorized into local and global channels, with global channels becoming the bottleneck for long contexts due to limited receptive fields.<br>
+        <strong>(b) Our method</strong>: LongMamba enlarges the receptive field of global channels through adaptive token filtering, preserving only the most important tokens in their hidden state memory.
+      </h2>
+    </div>
+  </div>
+</section> -->
+<!-- End teaser video -->
+
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <!-- <video poster="" id="tree" autoplay controls muted loop height="100%">
-        Your video here
-        <source src="static/videos/banner_video.mp4"
-        type="video/mp4">
-      </video> -->
-      <!-- insert an image located at static/images/overview.png-->
-      <img src="static/images/overview.png" alt="Overview" class="overview-image">
       <h2 class="subtitle has-text-centered">
-        <strong>★ Key insight</strong>: SSMs' hidden channels can be categorized into local and global channels, with global channels becoming the bottleneck for long contexts due to limited receptive fields.<br>
-        <strong>★ Our method</strong>: LongMamba enlarges the receptive field of global channels through adaptive token filtering, preserving only the most important tokens in their hidden state memory.
+        <strong>TL;DR:</strong> A training-free method for enhancing the long-context capabilities of SSMs.
+        <ul style="text-align: left; display: inline-block; margin-top: 10px;">
+          <li><span class="green-check">✔</span><strong>Effectiveness:</strong> Up to 24.58% average accuracy improvement on RULER;</li>
+          <li><span class="green-check">✔</span><strong>Compatibility:</strong> Compatible with SSMs and hybrid Transformer-SSM models;</li>
+          <li><span class="green-check">✔</span><strong>Minimal overhead:</strong> Less than 4% average latency overhead measured on A100.</li>
+        </ul>
       </h2>
     </div>
   </div>
 </section>
-<!-- End teaser video -->
 
 <!-- Paper abstract -->
 <section class="section hero is-light">
@@ -168,7 +200,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            State space models (SSMs) have emerged as an efficient alternative to Transformer models for language modeling, offering linear computational complexity and constant memory usage as context length increases. However, despite their efficiency in handling long contexts, recent studies have shown that SSMs, such as Mamba models, generally underperform compared to Transformers in long-context understanding tasks. To address this significant shortfall and achieve both efficient and accurate long-context understanding, we propose LongMamba, a training-free technique that significantly enhances the long-context capabilities of Mamba models. LongMamba builds on our discovery that the hidden channels in Mamba can be categorized into local and global channels based on their receptive field lengths, with global channels primarily responsible for long-context capability. These global channels can become the key bottleneck as the input context lengthens. Specifically, when input lengths largely exceed the training sequence length, global channels exhibit limitations in adaptively extend their receptive fields, leading to Mamba's poor long-context performance. The key idea of LongMamba is to mitigate the hidden state memory decay in these global channels by preventing the accumulation of unimportant tokens in their memory. This is achieved by first identifying critical tokens in the global channels and then applying token filtering to accumulate only those critical tokens. Through extensive benchmarking across synthetic and real-world long-context scenarios, LongMamba sets a new standard for Mamba's long-context performance, significantly extending its operational range without requiring additional training.
+            State space models (SSMs) have emerged as an efficient alternative to Transformer models for language modeling, offering linear computational complexity and constant memory usage as context length increases. However, despite their efficiency in handling long contexts, recent studies have shown that SSMs, such as Mamba models, generally underperform compared to Transformers in long-context understanding tasks. To address this significant shortfall and achieve both efficient and accurate long-context understanding, we propose <strong>LongMamba, a training-free technique that significantly enhances the long-context capabilities of Mamba models</strong>. LongMamba builds on our discovery that the hidden channels in Mamba can be categorized into local and global channels based on their receptive field lengths, with global channels primarily responsible for long-context capability. These global channels can become the key bottleneck as the input context lengthens. Specifically, when input lengths largely exceed the training sequence length, global channels exhibit limitations in adaptively extend their receptive fields, leading to Mamba's poor long-context performance. The key idea of LongMamba is to mitigate the hidden state memory decay in these global channels by preventing the accumulation of unimportant tokens in their memory. This is achieved by first identifying critical tokens in the global channels and then applying token filtering to accumulate only those critical tokens. Through extensive benchmarking across synthetic and real-world long-context scenarios, LongMamba sets a new standard for Mamba's long-context performance, significantly extending its operational range without requiring additional training.
           </p>
         </div>
       </div>
@@ -178,101 +210,244 @@
 <!-- End paper abstract -->
 
 
-<!-- Image carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel1.jpg" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-          First image description.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel2.jpg" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-          Second image description.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel3.jpg" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-         Third image description.
-       </h2>
-     </div>
-     <div class="item">
-      <!-- Your image here -->
-      <img src="static/images/carousel4.jpg" alt="MY ALT TEXT"/>
-      <h2 class="subtitle has-text-centered">
-        Fourth image description.
-      </h2>
-    </div>
-  </div>
-</div>
-</div>
-</section>
-<!-- End image carousel -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">LongMamba: Findings and Analysis</h2>
+        <!-- insert an image located at static/images/overview.png-->
+        <img src="static/images/fig2_attention.png" alt="Attention" class="attention-image">
+        <div class="content has-text-justified mt-4">
+            <p class="figure-caption">
+              Figure 1: Visualization of the Mamba-130M model's attention map (log scale) of 5 sampled channels under (a) training sequence length (2,000 tokens) and (b) extended sequence length (16,000 tokens).
+            </p>
 
+            <p>
+              <strong>🔍 Finding 1: Hidden state channels in SSMs can be categorized into two classes</strong>, based on their receptive field lengths at training sequence length (Fig. 1(a)):
+              <ul>
+                <li><strong>Local channels:</strong> Channels exhibit receptive fields that are significantly shorter than the training sequence length, suggesting that these channels function like a convolution layer or a sliding window attention that captures localized information.</li>
+                <li><strong>Global channels:</strong> Channels with receptive fields that are comparable to the entire training sequence length, meaning the global channels learn to capture information globally from the entire sequence.</li>
+              </ul>
+            </p>
 
-
-
-<!-- Youtube video -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <!-- Paper video. -->
-      <h2 class="title is-3">Video Presentation</h2>
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          
-          <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-          </div>
+            <p>
+              <strong>🔍 Finding 2: Global channels struggle to keep global attention coverage (global receptive field) at extended context lengths</strong>, as shown in Fig. 1(b), which could limit SSMs' capability for capturing and understanding long-context information.
+            </p>
         </div>
       </div>
     </div>
   </div>
 </section>
-<!-- End youtube video -->
 
-
-<!-- Video carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Another Carousel</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video1">
-          <video poster="" id="video1" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel1.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video2">
-          <video poster="" id="video2" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel2.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video3">
-          <video poster="" id="video3" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="static/videos/carousel3.mp4"
-            type="video/mp4">
-          </video>
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">LongMamba: A Two-step Pipeline</h2>
+        <!-- insert an image located at static/images/overview.png-->
+        <img src="static/images/fig1_overview.png" alt="Overview" class="overview-image">
+        <div class="content has-text-justified mt-4">
+          <p class="figure-caption">
+            Figure 2: (a) Challenge of directly applying SSM to a sequence (length denoted as <span class="math">\(S\)</span>) longer than the training sequence length (denoted as <span class="math">\(L\)</span>); (b) the proposed LongMamba framework, where we enlarge the receptive fields of the global channels using the two-step pipeline detailed below.
+          </p>
+            <br>
+            In light of the above findings, where we identify that the limited receptive field of the global channels is the main bottleneck for long-context understanding (as shown in Fig. 2(a)), the key idea of LongMamba is to mitigate memory decay in the aforementioned global channels by preventing the accumulation of unimportant tokens in their memory. As illustrated in Fig. 2(b), this is achieved through the following two-step pipeline: 
+            <ul>
+              <li><strong>Step 1: Identifying global channels within a target SSM</strong>. LongMamba first identifies global channels, which enter the following step, while keeping local channels untouched.</li>
+              <li><strong>Step 2: Enlarging the receptive fields of the global channels</strong>. LongMamba selects critical tokens along the sequence and applies token filtering to remove unimportant tokens from the global channels' memory.</li>
+            </ul>
+          </p>
         </div>
       </div>
     </div>
   </div>
 </section>
-<!-- End video carousel -->
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Evaluation Results</h2>
+        <!-- insert an image located at static/images/overview.png-->
+        <!-- <img src="static/images/fig3_ruler_acc.png" alt="Attention" class="attention-image"> -->
+        <div class="results-table-container">
+          <table class="table is-striped is-hoverable is-fullwidth compact-table">
+            <thead>
+              <tr class="has-background-primary" style="background-color: rgb(70,100,152) !important;">
+                <th class="has-text-white">Length</th>
+                <th class="has-text-white">Method</th>
+                <th class="has-text-white">S1</th>
+                <th class="has-text-white">S2</th>
+                <th class="has-text-white">S3</th>
+                <th class="has-text-white">MK1</th>
+                <th class="has-text-white">MV</th>
+                <th class="has-text-white">MQ</th>
+                <th class="has-text-white">VT</th>
+                <th class="has-text-white">CWE</th>
+                <th class="has-text-white">FWE</th>
+                <th class="has-text-white">QA1</th>
+                <th class="has-text-white">QA2</th>
+                <th class="has-text-white">Avg.</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="2">16k</td>
+                <td>Vanilla</td>
+                <td>30.00</td>
+                <td>11.00</td>
+                <td>7.00</td>
+                <td>6.00</td>
+                <td>8.00</td>
+                <td>0.00</td>
+                <td>0.20</td>
+                <td>0.10</td>
+                <td>13.67</td>
+                <td>0.00</td>
+                <td>1.00</td>
+                <td>7.00</td>
+              </tr>
+              <tr>
+                <td>LongMamba</td>
+                <td>79.00</td>
+                <td>92.00</td>
+                <td>31.00</td>
+                <td>23.00</td>
+                <td>58.00</td>
+                <td>49.25</td>
+                <td>0.20</td>
+                <td>2.30</td>
+                <td>0.67</td>
+                <td>1.00</td>
+                <td>11.00</td>
+                <td>31.58</td>
+              </tr>
+              <tr><td colspan="14" style="height:10px; background-color:#f5f5f5;"></td></tr>
+              <tr>
+                <td rowspan="2">24k</td>
+                <td>Vanilla</td>
+                <td>43.00</td>
+                <td>9.00</td>
+                <td>0.00</td>
+                <td>8.00</td>
+                <td>7.50</td>
+                <td>0.25</td>
+                <td>0.00</td>
+                <td>0.00</td>
+                <td>1.67</td>
+                <td>1.00</td>
+                <td>7.00</td>
+                <td>7.04</td>
+              </tr>
+              <tr>
+                <td>LongMamba</td>
+                <td>56.00</td>
+                <td>79.00</td>
+                <td>29.00</td>
+                <td>25.00</td>
+                <td>20.50</td>
+                <td>18.00</td>
+                <td>7.00</td>
+                <td>0.30</td>
+                <td>1.67</td>
+                <td>2.00</td>
+                <td>6.00</td>
+                <td>22.22</td>
+              </tr>
+              <tr><td colspan="14" style="height:10px; background-color:#f5f5f5;"></td></tr>
+              <tr>
+                <td rowspan="2">32k</td>
+                <td>Vanilla</td>
+                <td>26.00</td>
+                <td>0.00</td>
+                <td>0.00</td>
+                <td>0.00</td>
+                <td>0.00</td>
+                <td>0.00</td>
+                <td>1.80</td>
+                <td>0.10</td>
+                <td>1.00</td>
+                <td>0.00</td>
+                <td>1.00</td>
+                <td>2.72</td>
+              </tr>
+              <tr>
+                <td>LongMamba</td>
+                <td>34.00</td>
+                <td>73.00</td>
+                <td>16.00</td>
+                <td>17.00</td>
+                <td>0.80</td>
+                <td>0.50</td>
+                <td>4.00</td>
+                <td>0.20</td>
+                <td>0.67</td>
+                <td>2.00</td>
+                <td>4.00</td>
+                <td>13.83</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="content has-text-justified mt-4">
+          <p class="figure-caption">
+            Table 1: Per-task accuracy of LongMamba-enhanced and the vanilla Zamba2-1.2B model under different sequence lengths on RULER.
+          </p>
+        </div>
+
+        <div class="results-table-container">
+          <table class="table is-striped is-hoverable is-fullwidth compact-table">
+            <thead>
+              <tr class="has-background-primary" style="background-color: rgb(70,100,152) !important;">
+                <th class="has-text-white">Model</th>
+                <th class="has-text-white" colspan="2">Mamba-1.4B</th>
+                <th class="has-text-white" colspan="2">Mamba2-1.3B</th>
+                <th class="has-text-white" colspan="2">Zamba2-1.2B</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Method</td>
+                <td>Vanilla</td>
+                <td>LongMamba</td>
+                <td>Vanilla</td>
+                <td>LongMamba</td>
+                <td>Vanilla</td>
+                <td>LongMamba</td>
+              </tr>
+              <tr>
+                <td>Average Latency (Overhead)</td>
+                <td>6.53</td>
+                <td>6.78 (+3.7%)</td>
+                <td>6.31</td>
+                <td>6.48 (+2.7%)</td>
+                <td>2.83</td>
+                <td>2.94 (+3.9%)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="content has-text-justified mt-4">
+          <p class="figure-caption">
+            Table 2: Average prefilling latency of LongMamba-enhanced and vanilla SSM/Hybrid Transformer-SSM models on an A100 GPU (unit: seconds). The latency is averaged across sequence lengths of 8k, 16k, 32k, and 64k tokens.
+          </p>
+          <p>
+            <strong>📊 Consistent Effectiveness:</strong> As shown in Tab. 1, LongMamba consistently outperforms the vanilla Zamba2-1.2B model across all tasks and sequence lengths, achieving up to 24.58% average accuracy improvement on RULER.
+          </p>
+          <p>
+            <strong>⚡Minimal Latency Overhead:</strong> Tab. 2 demonstrates that LongMamba introduces only a minimal latency overhead (< 4% on average) across all three tested models (Mamba-1.4B, Mamba2-1.3B, and Zamba2-1.2B) when processing sequences of varying lengths (8k-64k tokens) on an A100 GPU.
+          </p>
+
+          <p>
+            For more benchmarking results (such as on LongBench-E), please refer to <a href="https://arxiv.org/abs/2504.16053" target="_blank">our paper</a> for details.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
 
 
 <!--BibTex citation -->
