@@ -24,7 +24,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-  <title>Academic Project Page</title>
+  <title>LongMamba: Enhancing Mamba's Long Context Capabilities via Training-Free Receptive Field Enlargement</title>
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
   rel="stylesheet">
@@ -36,6 +36,13 @@
   <link rel="stylesheet"
   href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="static/css/index.css">
+
+  <style>
+    .highlight-text {
+      color: #3273dc; /* Bulma's primary blue color */
+      font-weight: 600;
+    }
+  </style>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
@@ -52,20 +59,41 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Academic Project Page</h1>
+            <h1 class="title is-1 publication-title"><span class="highlight-text">LongMamba</span>: Enhancing Mamba's Long Context Capabilities via <span class="highlight-text">Training-Free</span> Receptive Field Enlargement</h1>
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
               <span class="author-block">
-                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">First Author</a><sup>*</sup>,</span>
+                <a href="." target="_blank">Zhifan Ye</a><sup>1 *</sup>,</span>
                 <span class="author-block">
-                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Second Author</a><sup>*</sup>,</span>
+                  <a href="." target="_blank">Kejing Xia</a><sup>1 *</sup>,</span>
                   <span class="author-block">
-                    <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Third Author</a>
+                    <a href="https://www.yongganfu.com/" target="_blank">Yonggan Fu</a><sup>1,2</sup>,
+                  </span>
+                  <span class="author-block">
+                    <a href="https://simonxin.com/" target="_blank">Xin Dong</a><sup>2</sup>,
+                  </span>
+                  <span class=".">
+                    <a href="." target="_blank">Jihoon Hong</a><sup>1</sup>,
+                  </span>
+                  <span class="author-block">
+                    <a href="https://xiangchi-yuan.github.io/" target="_blank">Xiangchi Yuan</a><sup>1</sup>,
+                  </span>
+                  <span class="author-block">
+                    <a href="https://shizhediao.github.io/" target="_blank">Shizhe Diao</a><sup>2</sup>,
+                  </span>
+                  <span class="author-block">
+                    <a href="https://jankautz.com/" target="_blank">Jan Kautz</a><sup>2</sup>,
+                  </span>
+                  <span class="author-block">
+                    <a href="https://www.pmolchanov.com/" target="_blank">Pavlo Molchanov</a><sup>2</sup>,
+                  </span>
+                  <span class="author-block">
+                    <a href="https://eiclab.scs.gatech.edu/pages/team.html#PI" target="_blank">Yingyan (Celine) Lin</a><sup>1,2</sup>
                   </span>
                   </div>
 
                   <div class="is-size-5 publication-authors">
-                    <span class="author-block">Institution Name<br>Conferance name and year</span>
+                    <span class="author-block"><sup>1</sup>Georgia Institute of Technology, <sup>2</sup>NVIDIA<br>ICLR 2025</span>
                     <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
                   </div>
 
@@ -73,7 +101,7 @@
                     <div class="publication-links">
                          <!-- Arxiv PDF link -->
                       <span class="link-block">
-                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
+                        <a href="https://arxiv.org/pdf/2504.16053" target="_blank"
                         class="external-link button is-normal is-rounded is-dark">
                         <span class="icon">
                           <i class="fas fa-file-pdf"></i>
@@ -82,31 +110,20 @@
                       </a>
                     </span>
 
-                    <!-- Supplementary PDF link -->
-                    <span class="link-block">
-                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
-                      class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon">
-                        <i class="fas fa-file-pdf"></i>
-                      </span>
-                      <span>Supplementary</span>
-                    </a>
-                  </span>
-
                   <!-- Github link -->
                   <span class="link-block">
-                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
+                    <a href="https://github.com/GATECH-EIC/LongMamba" target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
                     </span>
-                    <span>Code</span>
+                    <span>Code (to be released)</span>
                   </a>
                 </span>
 
                 <!-- ArXiv abstract Link -->
                 <span class="link-block">
-                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
+                  <a href="https://arxiv.org/abs/2504.16053" target="_blank"
                   class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                     <i class="ai ai-arxiv"></i>
@@ -123,17 +140,20 @@
 </section>
 
 
-<!-- Teaser video-->
+<!-- Teaser figure-->
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <video poster="" id="tree" autoplay controls muted loop height="100%">
-        <!-- Your video here -->
+      <!-- <video poster="" id="tree" autoplay controls muted loop height="100%">
+        Your video here
         <source src="static/videos/banner_video.mp4"
         type="video/mp4">
-      </video>
+      </video> -->
+      <!-- insert an image located at static/images/overview.png-->
+      <img src="static/images/overview.png" alt="Overview" class="overview-image">
       <h2 class="subtitle has-text-centered">
-        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
+        <strong>★ Key insight</strong>: SSMs' hidden channels can be categorized into local and global channels, with global channels becoming the bottleneck for long contexts due to limited receptive fields.<br>
+        <strong>★ Our method</strong>: LongMamba enlarges the receptive field of global channels through adaptive token filtering, preserving only the most important tokens in their hidden state memory.
       </h2>
     </div>
   </div>
@@ -148,7 +168,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tellus sed ante aliquam tempus. Etiam porttitor urna feugiat nibh elementum, et tempor dolor mattis. Donec accumsan enim augue, a vulputate nisi sodales sit amet. Proin bibendum ex eget mauris cursus euismod nec et nibh. Maecenas ac gravida ante, nec cursus dui. Vivamus purus nibh, placerat ac purus eget, sagittis vestibulum metus. Sed vestibulum bibendum lectus gravida commodo. Pellentesque auctor leo vitae sagittis suscipit.
+            State space models (SSMs) have emerged as an efficient alternative to Transformer models for language modeling, offering linear computational complexity and constant memory usage as context length increases. However, despite their efficiency in handling long contexts, recent studies have shown that SSMs, such as Mamba models, generally underperform compared to Transformers in long-context understanding tasks. To address this significant shortfall and achieve both efficient and accurate long-context understanding, we propose LongMamba, a training-free technique that significantly enhances the long-context capabilities of Mamba models. LongMamba builds on our discovery that the hidden channels in Mamba can be categorized into local and global channels based on their receptive field lengths, with global channels primarily responsible for long-context capability. These global channels can become the key bottleneck as the input context lengthens. Specifically, when input lengths largely exceed the training sequence length, global channels exhibit limitations in adaptively extend their receptive fields, leading to Mamba's poor long-context performance. The key idea of LongMamba is to mitigate the hidden state memory decay in these global channels by preventing the accumulation of unimportant tokens in their memory. This is achieved by first identifying critical tokens in the global channels and then applying token filtering to accumulate only those critical tokens. Through extensive benchmarking across synthetic and real-world long-context scenarios, LongMamba sets a new standard for Mamba's long-context performance, significantly extending its operational range without requiring additional training.
           </p>
         </div>
       </div>
@@ -255,30 +275,18 @@
 <!-- End video carousel -->
 
 
-
-
-
-
-<!-- Paper poster -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title">Poster</h2>
-
-      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
-          </iframe>
-        
-      </div>
-    </div>
-  </section>
-<!--End paper poster -->
-
-
 <!--BibTex citation -->
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>BibTex Code Here</code></pre>
+      <pre><code>@inproceedings{
+        ye2025longmamba,
+        title={LongMamba: Enhancing Mamba's Long-Context Capabilities via Training-Free Receptive Field Enlargement},
+        author={Zhifan Ye and Kejing Xia and Yonggan Fu and Xin Dong and Jihoon Hong and Xiangchi Yuan and Shizhe Diao and Jan Kautz and Pavlo Molchanov and Yingyan Celine Lin},
+        booktitle={The Thirteenth International Conference on Learning Representations},
+        year={2025},
+        url={https://openreview.net/forum?id=fMbLszVO1H}
+        }</code></pre>
     </div>
 </section>
 <!--End BibTex citation -->
@@ -291,7 +299,7 @@
         <div class="content">
 
           <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
             You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
             Commons Attribution-ShareAlike 4.0 International License</a>.
           </p>
